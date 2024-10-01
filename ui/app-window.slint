@@ -1,15 +1,46 @@
 import { Button, VerticalBox } from "std-widgets.slint";
 
+
 export component AppWindow inherits Window {
-    in-out property <int> counter: 42;
+    
+    width: 300px;
+    height: 150px;
+    title: "Litecoin";
+    in-out property <string> price: "0";
     callback request-increase-value();
+
     VerticalBox {
-        Text {
-            text: "Counter: \{root.counter}";
+        spacing: 1px;
+        VerticalLayout {
+            alignment: LayoutAlignment.center;
+            HorizontalLayout {
+                HorizontalLayout {
+                    spacing: 10px; 
+                    Image {
+                        source: @image-url("icons/logo.png");
+                        width: 25px;
+                    }  
+                    Text {
+                        font-size: 24px;
+                        text: "Laitcoin";
+                        vertical-alignment: center;
+                    }
+                }  
+                
+                Text {
+                    font-size: 24px;
+                    horizontal-alignment: right;
+                    text: "$\{root.price}";
+                }
+            }           
         }
 
+        
+
         Button {
-            text: "Increase value";
+            height: 50px;
+            primary: true;
+            text: "Refresh";
             clicked => {
                 root.request-increase-value();
             }
